@@ -44,8 +44,6 @@ private $contact,$objet,$msg_contenu,$images;
         Mail::send('mail/empty_mail',compact('images','msg_contenu'),function($message)use ($contact,$images,$objet,$msg_contenu )
         {
             $message->from(Auth::user()->email ,Auth::user()->nom." ".Auth::user()->prenoms )
-                ->to("claudiane.costecalde@eiffage.com")
-                ->to("marina.oulai@eiffage.com")
                         ->subject($objet);
             foreach($contact as $em):
                 $message ->bcc($em);

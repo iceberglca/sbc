@@ -80,8 +80,8 @@ $fournisseur= Fournisseur::find($bc->id_fournisseur);
                     $projet =Projet::find($bc->id_projet);
 
                     $message->from($bc->expediteur->email ,$bc->expediteur->nom." ".$bc->expediteur->prenoms)
-                    ->bcc("cyriaque.kodia@eiffage.com")
-                    ->subject($fournisseur->libelle."/".__('neutrale.demande_devis').' '.str_replace($projet->libelle,'',$numBonCommande).'/EGC-CI EIFFAGE')
+                    ->bcc("cyriaquekodia@gmail.com")
+                    ->subject($fournisseur->libelle."/".__('neutrale.demande_devis').' '.str_replace($projet->libelle,'',$numBonCommande).'/SBC')
                     ->attach($pdf);
                     foreach($contact as $em):
                         $message ->to($em);

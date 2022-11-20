@@ -44,7 +44,7 @@ private $Nb,$email,$action,$adresse;
             Mail::send('mail.notif_mail',array('nb' =>$Nb." demande(s) d'achat(s) en attente de validation",'adresse'=>$adresse),function($message)use ($email,$Nb ){
 
 
-                $message->from("noreply@eiffage.com" ,"PRO-ACHAT" )
+                $message->from("noreply@sbc.com" ,"PRO-ACHAT" )
                     ->to($email)
                     ->subject('Vous avez '.$Nb." demande(s) d'achat(s) en attente de validation ");
 
@@ -55,7 +55,7 @@ private $Nb,$email,$action,$adresse;
             Mail::send('mail.notif_mail',array('nb' =>$Nb." demande(s) d'achat(s) validée(s)",'adresse'=>$adresse),function($message)use ($email,$Nb ){
 
 
-                $message->from("noreply@eiffage.com" ,"PRO-ACHAT" )
+                $message->from("noreply@sbc.com" ,"PRO-ACHAT" )
                     ->to($email)
                     ->subject('Vous avez '.$Nb." demande(s) d'achat(s) validée(s ");
 
@@ -67,7 +67,7 @@ private $Nb,$email,$action,$adresse;
             Mail::send('mail.notif_mail',array('nb' =>$Nb." Bon de commande(s) validé(s)",'adresse'=>$adresse),function($message)use ($email,$Nb ){
 
 
-                $message->from("noreply@eiffage.com" ,"PRO-ACHAT" )
+                $message->from("noreply@sbc.com" ,"PRO-ACHAT" )
                     ->to($email)
                     ->subject('Vous avez '.$Nb." Bon de commande(s) validé(s) ");
 
@@ -78,7 +78,7 @@ private $Nb,$email,$action,$adresse;
             Mail::send('mail.notif_mail',array('nb' =>$Nb." bon de commande(s) en attente de signature",'adresse'=>$adresse),function($message)use ($email,$Nb ){
 
 
-                $message->from("noreply@eiffage.com" ,"PRO-ACHAT" )
+                $message->from("noreply@sbc.com" ,"PRO-ACHAT" )
                     ->to($email)
                     ->subject('Vous avez '.$Nb." bon(s) de commande(s) en attente de signature");
 

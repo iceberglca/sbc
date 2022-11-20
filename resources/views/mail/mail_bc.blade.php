@@ -37,6 +37,5 @@
         <br>
         <label>Mail : </label>{{isset($bc->expediteur->email)?$bc->expediteur->email:""}}
         <br>
-        <img src="http://172.20.73.3/achat.eiffageci/images/logomail.png"/>
     </p>
 @endsection
