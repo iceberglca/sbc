@@ -99,7 +99,8 @@ class InfoController extends Controller
         }
 
         $Nb=sizeof($das);;
-        $adresse_da="http://172.20.73.3/achat.eiffageci/encours_validation";
+        $adresse_da="nouvelle adresse à préciser";
+       // $adresse_da="http://172.20.73.3/achat.eiffageci/encours_validation";
         if($Nb>0){
             $this->dispatch(new EnvoiNotificationUtilisateur($Nb,$email,1,$adresse_da) );
         }
@@ -126,7 +127,8 @@ class InfoController extends Controller
         $das=  DA::where('etat','=',2)->get();
 
         $Nb=sizeof($das);
-        $adresse_da="http://172.20.73.3/achat.eiffageci/gestion_demande_proformas";
+       // $adresse_da="http://172.20.73.3/achat.eiffageci/gestion_demande_proformas";
+       $adresse_da="adresse à préciser";
         if($Nb>0){
             $this->dispatch(new EnvoiNotificationUtilisateur($Nb,$email,3,$adresse_da) );
         }
@@ -137,7 +139,8 @@ class InfoController extends Controller
         $das=  Boncommande::where('etat','=',2)->get();
 
         $Nb=sizeof($das);
-        $adresse_da="http://172.20.73.3/achat.eiffageci/gestion_bc";
+       // $adresse_da="http://172.20.73.3/achat.eiffageci/gestion_bc";
+       $adresse_da="adresse à préciser";
         if($Nb>0){
             $this->dispatch(new EnvoiNotificationUtilisateur($Nb,$email,4,$adresse_da) );
         }
@@ -148,7 +151,8 @@ class InfoController extends Controller
         $das=  BCController::liste_bc_en_attente_fonction_mode_validation($projet_choisi);
 
         $Nb=sizeof($das);
-        $adresse_bc="http://172.20.73.3/achat.eiffageci/validation_bc";
+        //$adresse_bc="http://172.20.73.3/achat.eiffageci/validation_bc";
+        $adresse_bc="adresse à préciser";
         if($Nb>0){
 
             $this->dispatch(new EnvoiNotificationUtilisateur($Nb,$email,2,$adresse_bc) );

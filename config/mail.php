@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'Cyriaque.KODIA@eiffage.com'),
-        'name' => env('MAIL_FROM_NAME', 'EIFFAGE - SERVICE ACHAT'),
+        'address' => env('MAIL_FROM_ADDRESS', 'Cyriaque.KODIA@sbc.com'),
+        'name' => env('MAIL_FROM_NAME', 'SBC - SERVICE ACHAT'),
     ],
 
     /*

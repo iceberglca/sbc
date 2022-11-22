@@ -34,7 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <div class="row">
             <div class="col-sm-2"></div>
-            <img  src="images/Eiffage_2400_01_colour_RGB.png" class="col-sm-8" alt="">
+            <img  src="images/sbbc.jpg" class="col-sm-8" alt="">
             <div class="col-sm-2"></div>
         </div>
 

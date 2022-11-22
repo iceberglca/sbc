@@ -28,7 +28,7 @@
     <strong>{{isset($bc->expediteur->prenom)?ucwords($bc->expediteur->prenom):""}} {{isset($bc->expediteur->nom)?strtoupper($bc->expediteur->nom):""}}</strong>
         <br>
 
-        <strong>Eiffage Génie Civil Côte d’Ivoire</strong>
+        <strong>SBC</strong>
         <br>
         <br>
     {{isset($bc->expediteur->function)?$bc->expediteur->function:""}} <br>

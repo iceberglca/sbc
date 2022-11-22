@@ -162,7 +162,7 @@
                 var numbbc=data[Object.keys(data)[2]];
                 $('#bc_slug').val(id);
                 $('#bcc').val(id);
-                $('#objet').val(fournisseur+"/BC N°"+numbbc.replace("PHB-815140-","")+"/EGC-CI EIFFAGE");
+                $('#objet').val(fournisseur+"/BC N°"+numbbc.replace(" ","")+"SBC");
 
                 $.get("list_contact/"+id,
                         function (data) {

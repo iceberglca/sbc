@@ -96,7 +96,7 @@
     <table style="margin: 0; padding: 0;">
         <tr>
             <td width="50%" valign="center" align="left">
-                <img src="{{ asset("images/Eiffage_2400_01_colour_RGB.jpg") }}">
+                <img src="{{ asset("images/sbbc.jpg") }}">
                 <p style="font-size: 8pt; padding: 0;">{{$bc->projet->denomination}}</p>
                 <p style="font-size: 8pt; padding: 0;">N° RCCM : {{$bc->projet->n_rccm}} / N° CC : {{$bc->projet->n_cc}}</p>
             </td>

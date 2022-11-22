@@ -100,12 +100,12 @@ class RapportController extends Controller
         }elseif($id==7){
             //$ca_par_fournisseur_et_domaine
 
-            $tableaux = DB::select('SELECT domaine,famille,libelle,quantite,prix_unitaire,prix_unitaire_usd,prix_unitaire_euro, sum(quantite*prix_unitaire) as prix_ht_materiel,sum(quantite*prix_unitaire_usd) as prix_ht_materiel_usd,sum(quantite*prix_unitaire_euro) as prix_ht_materiel_euro,devise FROM achat_eiffage.consommation_prix_u WHERE id_projet='.$projet_choisi->id.' group by id_projet,id_materiel;');
+            $tableaux = DB::select('SELECT domaine,famille,libelle,quantite,prix_unitaire,prix_unitaire_usd,prix_unitaire_euro, sum(quantite*prix_unitaire) as prix_ht_materiel,sum(quantite*prix_unitaire_usd) as prix_ht_materiel_usd,sum(quantite*prix_unitaire_euro) as prix_ht_materiel_euro,devise FROM sbc.consommation_prix_u WHERE id_projet='.$projet_choisi->id.' group by id_projet,id_materiel;');
 
         }elseif($id==8){
             //$ca_par_fournisseur_et_domaine
 
-            $tableaux = DB::select('SELECT * FROM achat_eiffage.stock where  quantite<=stock_min and id_projet='.$projet_choisi->id );
+            $tableaux = DB::select('SELECT * FROM sbc.stock where  quantite<=stock_min and id_projet='.$projet_choisi->id );
 
             // dd($tableaux);
         }elseif($id==9){
@@ -212,7 +212,7 @@ having quantite_livree is null
     }
     public function donne_moi_la_les_elements_de_la_première_livraison($numBonCommande,$id_fourisseur,$id_materiel){
         $projet_choisi= ProjectController::check_projet_access();
-    $premiere_livraisons =DB::select("SELECT * FROM achat_eiffage.command_reception  where id_projet=".$projet_choisi->id." and id_materiel=$id_materiel and id=$id_fourisseur and numBonCommande='$numBonCommande' order by date_reception ASC limit 1;");
+    $premiere_livraisons =DB::select("SELECT * FROM sbc.command_reception  where id_projet=".$projet_choisi->id." and id_materiel=$id_materiel and id=$id_fourisseur and numBonCommande='$numBonCommande' order by date_reception ASC limit 1;");
 
 
         dd($premiere_livraisons);

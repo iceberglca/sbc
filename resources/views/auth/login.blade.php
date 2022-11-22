@@ -16,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" >
     <!-- //bootstrap-css -->
     <!-- Custom CSS -->
-    <link rel="icon" href="{{ URL::asset('images/eiffagefavicon.png') }}" type="image/png" sizes="66x66">
+    <link rel="icon" href="{{ URL::asset('images/sbbc.ico') }}" type="image/png" sizes="66x66">
     <link href="{{asset('css/style.css')}}" rel='stylesheet' type='text/css' />
     <link href="{{asset('css/style-responsive.css')}}" rel="stylesheet"/>
     <!-- font CSS -->

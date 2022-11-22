@@ -144,7 +144,7 @@
 
     function génère_mail()
     {
-        var mail = txtprenoms.value +'.'+ txtnom.value + '@eiffage.com';
+        var mail = txtprenoms.value +'.'+ txtnom.value + '@SBC.com';
         document.getElementById('email').value = mail;
     }
 

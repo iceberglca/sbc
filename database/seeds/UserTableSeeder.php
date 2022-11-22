@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
 
         $user = new User();
         $user->nom = 'administrateur';
-        $user->email = 'admin@eiffage.com';
+        $user->email = 'admin@sbc.com';
         $user->abréviation = 'Admin';
         $user->function = 'Gestionnaire Application ';
         $user->password = bcrypt('Administrateur');

@@ -37,7 +37,7 @@ public function mettre_ajour(){
     $data[]=$montant_bc;
     $data[]=$montant_bct;
     $data['roles']=$lesroles;
-    $data['icon']=asset('images/Eiffage_2400_01_colour_RGB.png');
+    $data['icon']=asset('images/sbbc.ico');
     return $data;
 
 }
