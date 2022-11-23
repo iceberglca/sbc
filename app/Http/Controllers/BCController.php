@@ -489,14 +489,14 @@ return $view;
     }
     public function validation_bc()
     {
-       
+
         $projet_choisi= ProjectController::check_projet_access();
         $bcs=  Boncommande::where('id_projet','=',$projet_choisi->id)->where('etat','!=',1)->orderBy('created_at', 'DESC')->get();
         //je vérifie si on valide selon le paramettre valideur different
         $validation_flows =Validation_flow::where('id_projet','=',$projet_choisi->id)->orderBy('position','ASC')->get();
 
         $bcs_en_attentes = BCController::liste_bc_en_attente_fonction_mode_validation($projet_choisi);
-        $bc_valider_en_attentes = Boncommande::where('id_projet','=',$projet_choisi->id)->where('etat','!=',3)->where('validation_step','!=','')->where('validation_step','>=',Auth::user()->validation_flow()->where('id_projet','=',$projet_choisi->id)->first()->position)->orderBy('created_at', 'DESC')->get();
+        $bc_valider_en_attentes = Boncommande::where('id_projet','=',$projet_choisi->id)->where('etat','!=',3)->where('validation_step','!=','')->orderBy('created_at', 'DESC')->get();
          $utilisateurs=  User::where('id_projet','=',$projet_choisi->id)->get();
 
         $fournisseurs= DB::table('fournisseur')
@@ -509,7 +509,7 @@ return $view;
             ->select('fournisseur.libelle','fournisseur.id')->distinct()->get();
 
         $analytiques= Analytique::where('id_projet','=',$projet_choisi->id)->get();
-       
+
         return view('BC/validation_bc',compact('bcs','bcs_en_attentes','fournisseurs','utilisateurs','analytiques','fournisseurss','validation_flows','bc_valider_en_attentes'));
     }
     public function procede_validation_step($boncommande,$projet){
@@ -549,18 +549,18 @@ return $view;
                  //$lignebesoins=Lignebesoin::where('id_bonCommande','=',$bc->id)->first();
                  $lignebesoins=DB::table('lignebesoin')
                                    ->join('users', 'lignebesoin.id_user', '=', 'users.id')->where('id_bonCommande','=',$boncommande->id)->get();
- 
+
                  $numBonCommande=$boncommande->numBonCommande;
                  $tab=Array();
                  foreach($lignebesoins as $lignebesoin){
                      $tab[]=$lignebesoin->id_nature;
                  }
- 
+
                  //constituer le mail
- 
+
                  $corps= Array();
                 $contactDemandeur= Array();
- 
+
                  $images= Array();
                  $precisions= Array();
                  $i=0;
@@ -570,8 +570,8 @@ return $view;
                          $materiel=DB::table('designation')
                              ->where('id', '=', $das->id_materiel)
                              ->select('libelle','image')->distinct()->get();
- 
- 
+
+
                          if($materiel[0]->image!==""){
                              $images[$i]=$materiel[0]->image;
                          }else{
@@ -581,12 +581,12 @@ return $view;
                              $precisions[$i]=$das->commentaire;
                          }else{
                              $precisions[$i]="";
- 
+
                          }
                          $corps[$i] =" - ".$das->quantite." ".$das->unite." de ".$materiel[0]->libelle;
                      }
                      $i++;
- 
+
                  endforeach;
                 $pdf->save(storage_path('bon_commande').'\ '.__('neutrale.numero_bc_sans_abreviation').$boncommande->numBonCommande.'.pdf');
                 //  dd($contactDemandeur);
@@ -596,7 +596,7 @@ return $view;
 
         }else{
             $boncommande->validation_step=Auth::user()->validation_flow()->where('id_projet','=',$boncommande->id_projet)->first()->position;
-            
+
             $trace_validation_bc= new Trace_validation_bc();
             $trace_validation_bc->id_bonCommande=$boncommande->id;
             $trace_validation_bc->position=$validation_flow->position;
@@ -683,8 +683,8 @@ return $view;
                         $materiel=DB::table('designation')
                             ->where('id', '=', $das->id_materiel)
                             ->select('libelle','image')->distinct()->get();
-    
-    
+
+
                         if($materiel[0]->image!==""){
                             $images[$i]=$materiel[0]->image;
                         }else{
@@ -694,21 +694,21 @@ return $view;
                             $precisions[$i]=$das->commentaire;
                         }else{
                             $precisions[$i]="";
-    
+
                         }
                         $corps[$i] =" - ".$das->quantite." ".$das->unite." de ".$materiel[0]->libelle;
                     }
                     $i++;
-    
+
                 endforeach;
                 $pdf->save(storage_path('bon_commande').'\ '.__('neutrale.numero_bc_sans_abreviation').$Boncommande->numBonCommande.'.pdf');
                 $this->dispatch(new EnvoiBcFournisseur($contact,storage_path('bon_commande').'\ '.__('neutrale.numero_bc_sans_abreviation').$Boncommande->numBonCommande.'.pdf',$tab,$corps,$contactDemandeur,$Boncommande,$precisions,$images) );
                 //  return redirect()->route('gestion_bc')->with('success', "Envoie d'email reussi");
-    
+
                 $Boncommande->etat=3;
                 $Boncommande->date_validation=date("Y-m-d H:i:s");
                 $Boncommande->save();
-               
+
                 if(isset($das)){
                     $das->etat=3;
                     $das->save();
@@ -1099,7 +1099,7 @@ $boncommande=Boncommande::find($boncommande->id);
                     }
                 endforeach;
 
- 
+
                 $tothtax = 0;
                 $taille=sizeof($bc->ligne_bcs()->get());
                 if($bc->commentaire_general==''){
@@ -1122,18 +1122,18 @@ $boncommande=Boncommande::find($boncommande->id);
                  //$lignebesoins=Lignebesoin::where('id_bonCommande','=',$bc->id)->first();
                  $lignebesoins=DB::table('lignebesoin')
                                    ->join('users', 'lignebesoin.id_user', '=', 'users.id')->where('id_bonCommande','=',$bc->id)->get();
- 
+
                  $numBonCommande=$bc->numBonCommande;
                  $tab=Array();
                  foreach($lignebesoins as $lignebesoin){
                      $tab[]=$lignebesoin->id_nature;
                  }
- 
+
                  //constituer le mail
- 
+
                  $corps= Array();
                     $contactDemandeur= Array();
- 
+
                  $images= Array();
                  $precisions= Array();
                  $i=0;
@@ -1143,8 +1143,8 @@ $boncommande=Boncommande::find($boncommande->id);
                          $materiel=DB::table('designation')
                              ->where('id', '=', $das->id_materiel)
                              ->select('libelle','image')->distinct()->get();
- 
- 
+
+
                          if($materiel[0]->image!==""){
                              $images[$i]=$materiel[0]->image;
                          }else{
@@ -1154,12 +1154,12 @@ $boncommande=Boncommande::find($boncommande->id);
                              $precisions[$i]=$das->commentaire;
                          }else{
                              $precisions[$i]="";
- 
+
                          }
                          $corps[$i] =" - ".$das->quantite." ".$das->unite." de ".$materiel[0]->libelle;
                      }
                      $i++;
- 
+
                  endforeach;
                     $pdf->save(storage_path('bon_commande').'\ '.__('neutrale.numero_bc_sans_abreviation').$bc->numBonCommande.'.pdf');
                     //  dd($contactDemandeur);
@@ -1170,7 +1170,7 @@ $boncommande=Boncommande::find($boncommande->id);
                     $this->procede_validation_step($bc,$bc->projet);
 
                 }
-                
+
                 $bc->save();
                 $lignebesoin=Lignebesoin::where('id_bonCommande','=',$bc->id)->first();
             if(isset($lignebesoin)){
@@ -1179,7 +1179,7 @@ $boncommande=Boncommande::find($boncommande->id);
             }
 
                 // Finally, you can download the file using download function
-               
+
 
 
             /*debut du traçages*/
@@ -1789,7 +1789,7 @@ $optcode.=" <option value='".$code->codeRubrique."' data-subtext='".$code->libel
 
         }elseif($projet_choisi->typeValidation==3){
             //dd(Auth::user()->validation_flow->where('id_projet','=',$projet_choisi->id)->first()->position);
-            //la validation est foncton 
+            //la validation est foncton
             $bcs_en_attentes=  Boncommande::where('id_projet','=',$projet_choisi->id)->where([['etat', '=', 1],['date', '<>', null],['service_demandeur', '<>', null],['validation_step', '=', (Auth::user()->validation_flow->where('id_projet','=',$projet_choisi->id)->first()->position) - 1]])->orderBy('created_at', 'DESC')->get();
         }else{
             $bcs_en_attentes=  Boncommande::where('id_projet','=',$projet_choisi->id)->where([['etat', '=', 1],['date', '<>', null],['service_demandeur', '<>', null]])->orderBy('created_at', 'DESC')->get();
