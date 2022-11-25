@@ -159,7 +159,7 @@ class FournisseurController extends Controller
         $fournisseur->save();
 
 
-        return redirect()->route('ajouter_fournisseur')->with('success',"success");
+        return redirect()->back()->with('success',"success");
     }
     public function alljson(){
         $collections = [];
